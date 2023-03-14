@@ -1,0 +1,28 @@
+FROM alpine:edge
+WORKDIR /root
+
+# Install dependencies
+RUN apk update && apk add \
+    bash \
+    curl \
+    git \
+    fd \
+    inotify-tools \
+    lazygit \
+    neovim \
+    nodejs \
+    openssh \
+    ripgrep \
+    ssh \
+    stow \
+    tree \
+    wget \
+    zsh
+
+# Install dotfiles
+RUN mkdir -p dotfiles \
+    && cd dotfiles \
+    && git clone https://github.com/monooso/devbox-dotfiles.git \
+    && stow devbox-dotfiles
+
+CMD ["/bin/zsh"]
