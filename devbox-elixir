@@ -1,0 +1,6 @@
+FROM monooso/devbox-base:latest
+
+RUN apk update && apk add erlang elixir
+
+RUN mix local.hex --force
+RUN mix local.rebar --force
