@@ -12,6 +12,6 @@ Here's the command to build the base image. Note the trailing period:
 docker buildx build -t monooso/base-alpine:latest -f base-alpine --build-context /path/to/your/home/directory/.ssh:/root/.ssh .
 ```
 
-[^1]: Yes, I'm aware this is a terrible thing to do, but: (1) it's an experiment; (2) is is strictly intended for local use only; (3) getting SSH commit signing to work with forwarded SSH keys is beyond me.
+[^1]: Yes, I'm aware this is a terrible thing to do, but: (1) it's an experiment; (2) this is intended for local use; (3) getting SSH commit signing to work with forwarded SSH keys is beyond me.
 
 
