@@ -1,4 +1,3 @@
-# syntax=docker/dockerfile:1
 FROM alpine:edge
 
 # Install dependencies
@@ -22,12 +21,6 @@ RUN apk update && apk add \
     tree \
     wget \
     zsh
-
-# Copy SSH keys; I know, shut up, this is an experiment
-WORKDIR /root
-RUN mkdir -p .ssh
-COPY --from=ssh id_ed25519 .ssh/id_ed25519
-COPY --from=ssh id_ed25519.pub .ssh/id_ed25519.pub
 
 # Install dotfiles
 WORKDIR /root
