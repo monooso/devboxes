@@ -5,12 +5,17 @@ FROM alpine:edge
 RUN apk update && apk add \
     bash \
     curl \
+    g++ \
+    gcc \
     git \
     fd \
     inotify-tools \
     lazygit \
+    make \
+    musl-dev \
     neovim \
     nodejs \
+    npm \
     openssh \
     ripgrep \
     stow \
@@ -25,9 +30,14 @@ COPY --from=ssh id_ed25519 .ssh/id_ed25519
 COPY --from=ssh id_ed25519.pub .ssh/id_ed25519.pub
 
 # Install dotfiles
+WORKDIR /root
 RUN mkdir -p dotfiles \
     && cd dotfiles \
     && git clone https://github.com/monooso/devbox-dotfiles.git \
     && stow devbox-dotfiles
+
+# Create a directory for all the lovely code we're going to write
+WORKDIR /root
+RUN mkdir app
 
 CMD ["/bin/zsh"]
